@@ -1,3 +1,7 @@
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
+
 /// use a two pointer algorithm to extract the desired two digit number
 /// code is likely super clunky as ive never written with rust before
 /// so expect some bastardisation of rust x python here...
@@ -22,7 +26,6 @@ fn pointers(input_string: &str)  -> i32 {
 
     if let (Some(char_i), Some(char_j)) = (input_string.chars().nth(i), input_string.chars().nth(j)) {
         let solution = format!("{}{}", char_i, char_j);
-        println!("sol={}", solution);
         match solution.parse::<i32>() {
             Ok(number) => return number,
             Err(e) => {
@@ -38,5 +41,20 @@ fn pointers(input_string: &str)  -> i32 {
 }
 
 fn main() {
-    println!("Hello, world!");
+    let file_path = "src/inputs.txt";
+    let file = File::open(&file_path).unwrap();
+    let reader = io::BufReader::new(file);
+
+    let mut results = Vec::new();
+
+    for line in reader.lines() {
+        let line = line.unwrap(); // Unwrap the Result returned by lines()
+        let result = pointers(&line);
+
+        results.push(result);
+    }
+
+    let sum: i32 = results.iter().sum();
+
+    println!("Sum: {}", sum);
 }
