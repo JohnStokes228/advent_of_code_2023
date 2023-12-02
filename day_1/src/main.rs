@@ -1,11 +1,30 @@
 use std::fs::File;
 use std::io::{self, BufRead};
-use std::path::Path;
+
+/// we need an iterative replacement of each 'string number'
+/// since they bloody allow two numbers to share a character
+/// we will do this by replacing wrapped numbers 
+/// likenumeric hotdogs
+/// or beefburgers IDK
+fn replace_string_number(input_string: &str) -> String {
+    let result = input_string.to_string()
+                .replace("one", "one1one")
+                .replace("two", "two2two")
+                .replace("three", "three3three")
+                .replace("four", "four4four")
+                .replace("five", "five5five")
+                .replace("six", "six6six")
+                .replace("seven", "seven7seven")
+                .replace("eight", "eight8eight")
+                .replace("nine", "nine9nine");
+    
+    result
+}
 
 /// use a two pointer algorithm to extract the desired two digit number
 /// code is likely super clunky as ive never written with rust before
 /// so expect some bastardisation of rust x python here...
-fn pointers(input_string: &str)  -> i32 {
+fn pointers(input_string: &str) -> i32 {
     let (mut i, mut j) = (0, input_string.len() - 1);
     let mut condition_met: bool = false;
 
@@ -49,7 +68,7 @@ fn main() {
 
     for line in reader.lines() {
         let line = line.unwrap(); // Unwrap the Result returned by lines()
-        let result = pointers(&line);
+        let result = pointers(&replace_string_number(&line));
 
         results.push(result);
     }
