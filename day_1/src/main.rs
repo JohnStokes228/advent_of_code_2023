@@ -3,6 +3,7 @@ use std::io::{self, BufRead};
 use day_1_project::funcs::pointers;
 use day_1_project::funcs::replace_string_number;
 
+/// runs only part 2 as part 1 is just a gimpy version of the same
 fn main() {
     let file_path = "src/inputs.txt";
     let file = File::open(&file_path).unwrap();
