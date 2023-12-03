@@ -1,1 +1,1 @@
-C:\Users\johnc\advent_of_code_2023\day_2\target\debug\day_2.exe: C:\Users\johnc\advent_of_code_2023\day_2\src\main.rs
+C:\Users\johnc\advent_of_code_2023\day_2\target\debug\day_2.exe: C:\Users\johnc\advent_of_code_2023\day_2\src\funcs.rs C:\Users\johnc\advent_of_code_2023\day_2\src\lib.rs C:\Users\johnc\advent_of_code_2023\day_2\src\main.rs
