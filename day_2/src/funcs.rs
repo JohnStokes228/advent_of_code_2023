@@ -24,7 +24,6 @@ fn bool_to_game_numb(input_string: &str, validity: bool) -> i32 {
     
         if let Some(captured) = re.find(input_string) {
             let result: i32 = captured.as_str().parse().unwrap();
-            println!("{}", result);
             return result;
         } else {
             println!("No integer found in the string");
@@ -42,4 +41,8 @@ pub fn game_count(input_string: &str) -> i32 {
     let validity = valid_blue && valid_green && valid_red;
 
     return bool_to_game_numb(input_string, validity)
+}
+
+pub fn game_power(input_string: &str) -> i32 {
+    return 0;
 }
