@@ -1,13 +1,20 @@
 use regex::Regex;
 
+/// create ball vector
+fn cubes(input_string: &str, substring: &str) -> Vec<i32> {
+    let re = Regex::new(&format!(r#"(\d+)\s*{}"#, substring)).unwrap();
+    let cube_count: Vec<i32> = re.find_iter(input_string).map(|m| m.as_str().split_whitespace().next().unwrap().parse().unwrap()).collect();
+
+    return cube_count;
+}
+
 /// return a boolean if the game represents a possible occurance of cubes
 /// else, return false
 /// sorry for how ugly this function is i really didnt want to have to resort to splitting
 /// but regex alone i just couldnt land - didnt want to get too stuck on this otherwise fairly
 /// basic task
 fn is_valid(input_string: &str, substring: &str, max_balls: i32) -> bool {
-    let re = Regex::new(&format!(r#"(\d+)\s*{}"#, substring)).unwrap();
-    let cube_count: Vec<i32> = re.find_iter(input_string).map(|m| m.as_str().split_whitespace().next().unwrap().parse().unwrap()).collect();
+    let cube_count: Vec<i32> = cubes(input_string, substring);
     let leq_max_balls: bool = cube_count.iter().all(|&value| value <= max_balls);
 
     return leq_max_balls
@@ -44,5 +51,9 @@ pub fn game_count(input_string: &str) -> i32 {
 }
 
 pub fn game_power(input_string: &str) -> i32 {
-    return 0;
+    let blue = cubes(input_string, "blue");
+    let green = cubes(input_string, "green");
+    let red = cubes(input_string, "red");
+
+    return blue.iter().max().unwrap() * green.iter().max().unwrap() * red.iter().max().unwrap()
 }
