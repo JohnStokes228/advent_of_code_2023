@@ -13,7 +13,7 @@ mod tests {
     }
 
     #[test]
-    fn part_2_example_3() { // itll return 0 if its not valid so the sum isnt affected and the type is consistent
+    fn part_2_example_3() {
         assert_eq!(game_power("Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red"), 1560);
     }
 
